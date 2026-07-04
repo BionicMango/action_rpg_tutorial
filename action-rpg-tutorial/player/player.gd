@@ -12,7 +12,10 @@ func _physics_process(_delta: float) -> void:
 	velocity = input_vector * speed;
 	
 	if input_vector != Vector2.ZERO:
-		animation_tree.set("parameters/StateMachine/MoveState/RunState/blend_position", input_vector);
-		animation_tree.set("parameters/StateMachine/MoveState/StandState/blend_position", input_vector);
+		update_blend_positions(input_vector);
 		
 	move_and_slide();
+
+func update_blend_positions(direction_vector: Vector2) -> void:
+	animation_tree.set("parameters/StateMachine/MoveState/RunState/blend_position", direction_vector);
+	animation_tree.set("parameters/StateMachine/MoveState/StandState/blend_position", direction_vector);
