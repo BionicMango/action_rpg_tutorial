@@ -426,6 +426,7 @@ blend_point_2/node = SubResource("AnimationNodeAnimation_32hag")
 blend_point_2/pos = Vector2(0.90000004, 0)
 blend_point_3/node = SubResource("AnimationNodeAnimation_tqiix")
 blend_point_3/pos = Vector2(0, -1)
+blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kb6p2"]
 advance_mode = 2
@@ -454,10 +455,13 @@ transitions = ["Start", "MoveState", SubResource("AnimationNodeStateMachineTrans
 graph_offset = Vector2(0, -57.932964)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_32hag"]
-graph_offset = Vector2(-212, 0)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_wodsf")
 nodes/StateMachine/position = Vector2(13.333333, 53.333332)
 node_connections = [&"output", 0, &"StateMachine"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkbax"]
+radius = 9.0
+height = 24.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1682398492]
 motion_mode = 1
@@ -482,3 +486,6 @@ parameters/StateMachine/RollState/blend_position = Vector2(0, 0)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=319115693]
 process_callback = 0
 position_smoothing_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1380189892]
+shape = SubResource("CapsuleShape2D_rkbax")

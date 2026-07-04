@@ -4,8 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://df30kg2krmh8a" path="res://world/grass_background.png" id="1_fj7yv"]
 
 [node name="World" type="Node2D" unique_id=769565659]
+position = Vector2(1, 1)
 
-[node name="GrassBG" type="TextureRect" parent="." unique_id=1253972731]
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=322429356]
+repeat_size = Vector2(320, 192)
+
+[node name="GrassBG" type="TextureRect" parent="Parallax2D" unique_id=1253972731]
 offset_right = 320.0
 offset_bottom = 192.0
 texture = ExtResource("1_fj7yv")
