@@ -1,8 +1,15 @@
 [gd_scene format=3 uid="uid://dnnln4c00cyfr"]
 
 [ext_resource type="PackedScene" uid="uid://b3vemrwnxsh2b" path="res://player/player.tscn" id="1_f3sb7"]
+[ext_resource type="Texture2D" uid="uid://df30kg2krmh8a" path="res://world/grass_background.png" id="1_fj7yv"]
 
 [node name="World" type="Node2D" unique_id=769565659]
+
+[node name="GrassBG" type="TextureRect" parent="." unique_id=1253972731]
+offset_right = 320.0
+offset_bottom = 192.0
+texture = ExtResource("1_fj7yv")
+stretch_mode = 1
 
 [node name="Player" parent="." unique_id=1682398492 instance=ExtResource("1_f3sb7")]
 position = Vector2(122, 71)
