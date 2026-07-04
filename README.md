@@ -1,5 +1,5 @@
 # Action RPG Tutorial (from YouTube)
-Following an action rpg tutorial from the YouTube Channel 'HeartBeast'.
+Following an action rpg tutorial from the YouTube Channel 'Heartbeast'.
 
 Link to YouTube Channel: [https://www.youtube.com/@uheartbeast](url)
 
