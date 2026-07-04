@@ -8,7 +8,7 @@ var input_vector: Vector2 = Vector2.ZERO;
 func _physics_process(_delta: float) -> void:
 	velocity = Vector2.ZERO;
 
-	input_vector = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down");
+	input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down");
 	velocity = input_vector * speed;
 	
 	if input_vector != Vector2.ZERO:
