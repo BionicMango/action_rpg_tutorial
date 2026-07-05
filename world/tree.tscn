@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://g625nvacd71v"]
 
+[ext_resource type="Texture2D" uid="uid://bkqk5a7phh5jk" path="res://shadows/large_shadow.png" id="1_1q5bg"]
 [ext_resource type="Texture2D" uid="uid://cm30541mh2tdp" path="res://world/tree.png" id="1_tn4rm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tn4rm"]
@@ -14,3 +15,9 @@ texture = ExtResource("1_tn4rm")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1640696453]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_tn4rm")
+
+[node name="ShadowSprite2D2" type="Sprite2D" parent="." unique_id=1141673800]
+show_behind_parent = true
+z_index = -1
+position = Vector2(0, 2)
+texture = ExtResource("1_1q5bg")
