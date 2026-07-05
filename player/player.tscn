@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://b3vemrwnxsh2b"]
 
 [ext_resource type="Texture2D" uid="uid://cdodl0rgmstib" path="res://player/player.png" id="1_oul6g"]
-[ext_resource type="Script" uid="uid://de4mxopfp5g0t" path="res://player/player.gd" id="1_rkbax"]
 
 [sub_resource type="Animation" id="Animation_rkbax"]
 length = 0.001
@@ -459,20 +458,17 @@ nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_wodsf")
 nodes/StateMachine/position = Vector2(13.333333, 53.333332)
 node_connections = [&"output", 0, &"StateMachine"]
 
-[node name="Player" type="CharacterBody2D" unique_id=1682398492]
-position = Vector2(0, -8)
-motion_mode = 1
-script = ExtResource("1_rkbax")
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1805509164]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=22575981]
-position = Vector2(0, 2)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1584544639]
+position = Vector2(0, -6)
 texture = ExtResource("1_oul6g")
 hframes = 60
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1865383943]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=294144343]
 libraries/ = SubResource("AnimationLibrary_yw30f")
 
-[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1334192146]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=388290889]
 tree_root = SubResource("AnimationNodeBlendTree_32hag")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
@@ -481,9 +477,11 @@ parameters/StateMachine/MoveState/RunState/blend_position = Vector2(-0.002728521
 parameters/StateMachine/MoveState/StandState/blend_position = Vector2(0.00086426735, 0.9809524)
 parameters/StateMachine/RollState/blend_position = Vector2(0, 0)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=319115693]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=759096610]
+position = Vector2(0, -8)
 process_callback = 0
 position_smoothing_enabled = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=26137941]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=985802841]
+position = Vector2(0, -8)
 polygon = PackedVector2Array(0, 13, -5, 6, 0, 0, 5, 6)
