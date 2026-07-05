@@ -16,7 +16,7 @@ texture = ExtResource("1_tn4rm")
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_tn4rm")
 
-[node name="ShadowSprite2D2" type="Sprite2D" parent="." unique_id=1141673800]
+[node name="ShadowSprite2D" type="Sprite2D" parent="." unique_id=1141673800]
 show_behind_parent = true
 z_index = -1
 position = Vector2(0, 2)
