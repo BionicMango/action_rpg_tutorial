@@ -460,10 +460,12 @@ nodes/StateMachine/position = Vector2(13.333333, 53.333332)
 node_connections = [&"output", 0, &"StateMachine"]
 
 [node name="Player" type="CharacterBody2D" unique_id=1682398492]
+position = Vector2(0, -8)
 motion_mode = 1
 script = ExtResource("1_rkbax")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=22575981]
+position = Vector2(0, 2)
 texture = ExtResource("1_oul6g")
 hframes = 60
 

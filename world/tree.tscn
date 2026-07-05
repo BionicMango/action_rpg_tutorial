@@ -3,9 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://cm30541mh2tdp" path="res://world/tree.png" id="1_tn4rm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1q5bg"]
-radius = 12.0
+radius = 14.035668
 
 [node name="Tree" type="StaticBody2D" unique_id=1142778969]
+position = Vector2(0, -17)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1246705559]
 texture = ExtResource("1_tn4rm")
