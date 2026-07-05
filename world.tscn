@@ -2,8 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://b3vemrwnxsh2b" path="res://player/player.tscn" id="1_f3sb7"]
 [ext_resource type="Texture2D" uid="uid://df30kg2krmh8a" path="res://world/grass_background.png" id="1_fj7yv"]
+[ext_resource type="PackedScene" uid="uid://c4undlshgwwvb" path="res://world/bush.tscn" id="3_tlwt5"]
 
 [node name="World" type="Node2D" unique_id=769565659]
+y_sort_enabled = true
 position = Vector2(1, 1)
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=322429356]
@@ -17,3 +19,34 @@ stretch_mode = 1
 
 [node name="Player" parent="." unique_id=1682398492 instance=ExtResource("1_f3sb7")]
 position = Vector2(122, 71)
+
+[node name="Bushes" type="Node2D" parent="." unique_id=412351250]
+y_sort_enabled = true
+
+[node name="Bush" parent="Bushes" unique_id=840289825 instance=ExtResource("3_tlwt5")]
+y_sort_enabled = true
+position = Vector2(42, 42)
+
+[node name="Bush2" parent="Bushes" unique_id=883529487 instance=ExtResource("3_tlwt5")]
+y_sort_enabled = true
+position = Vector2(74, 102)
+
+[node name="Bush3" parent="Bushes" unique_id=1881571722 instance=ExtResource("3_tlwt5")]
+y_sort_enabled = true
+position = Vector2(217, 107)
+
+[node name="Bush4" parent="Bushes" unique_id=233506980 instance=ExtResource("3_tlwt5")]
+y_sort_enabled = true
+position = Vector2(175, 57)
+
+[node name="Bush5" parent="Bushes" unique_id=1268884422 instance=ExtResource("3_tlwt5")]
+y_sort_enabled = true
+position = Vector2(114, 33)
+
+[node name="Bush6" parent="Bushes" unique_id=1616756119 instance=ExtResource("3_tlwt5")]
+y_sort_enabled = true
+position = Vector2(145, 129)
+
+[node name="Bush7" parent="Bushes" unique_id=1649307565 instance=ExtResource("3_tlwt5")]
+y_sort_enabled = true
+position = Vector2(259, 42)
