@@ -458,7 +458,7 @@ nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_wodsf")
 nodes/StateMachine/position = Vector2(13.333333, 53.333332)
 node_connections = [&"output", 0, &"StateMachine"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1805509164]
+[node name="Player" type="CharacterBody2D" unique_id=1805509164]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1584544639]
 position = Vector2(0, -6)
