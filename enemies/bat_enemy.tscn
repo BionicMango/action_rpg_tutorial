@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cdb0umjoj3e0e"]
+
+[ext_resource type="Texture2D" uid="uid://d4dlpl7tvhcs8" path="res://enemies/bat.png" id="1_0fsds"]
+
+[node name="BatEnemy" type="CharacterBody2D" unique_id=712715095]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=793002849]
+texture = ExtResource("1_0fsds")
+hframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=117551007]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1954786179]
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1279440763]
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="ShadowSprite2D2" type="Sprite2D" parent="." unique_id=1101999878]
