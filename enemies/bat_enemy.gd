@@ -10,7 +10,13 @@ const SPEED: float = 30.0; # set in inspector
 @onready var sprite_2d: Sprite2D = $Sprite2D;
 @onready var animation_tree: AnimationTree = $AnimationTree;
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/StateMachine/playback");
-@onready var ray_cast_2d: RayCast2D = $RayCast2D
+@onready var ray_cast_2d: RayCast2D = $RayCast2D;
+@onready var hurtbox: Hurtbox = $Hurtbox;
+
+func _ready() -> void:
+	hurtbox.hurt.connect(func(_other_hitbox: Hitbox): 
+		queue_free();
+	)
 
 func _physics_process(_delta: float) -> void:
 	# switching between different states
@@ -46,6 +52,7 @@ func chase_state():
 		velocity = Vector2.ZERO;
 	move_and_slide();
 
+# checks if player is in line of sight (not behind other objects like trees)
 func can_see_player() -> bool:
 	if not is_player_in_range():
 		return false;

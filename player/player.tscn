@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cdodl0rgmstib" path="res://player/player.png" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://de4mxopfp5g0t" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://ckatuw2t4bxe4" path="res://shadows/medium_shadow.png" id="2_g1dw6"]
+[ext_resource type="Script" uid="uid://dj2f4pt0e0uf4" path="res://damage_boxes/hitbox.gd" id="4_yw30f"]
 
 [sub_resource type="Animation" id="Animation_rkbax"]
 length = 0.001
@@ -21,7 +22,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SwordArea2D/CollisionPolygon2D:polygon")
+tracks/1/path = NodePath("Hitbox/CollisionPolygon2D:polygon")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -50,7 +51,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SwordArea2D/CollisionPolygon2D:polygon")
+tracks/1/path = NodePath("Hitbox/CollisionPolygon2D:polygon")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -79,7 +80,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SwordArea2D/CollisionPolygon2D:polygon")
+tracks/1/path = NodePath("Hitbox/CollisionPolygon2D:polygon")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -108,7 +109,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SwordArea2D/CollisionPolygon2D:polygon")
+tracks/1/path = NodePath("Hitbox/CollisionPolygon2D:polygon")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -137,7 +138,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SwordArea2D/CollisionPolygon2D:polygon")
+tracks/1/path = NodePath("Hitbox/CollisionPolygon2D:polygon")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -558,6 +559,10 @@ z_index = -1
 position = Vector2(0, 5)
 texture = ExtResource("2_g1dw6")
 
-[node name="SwordArea2D" type="Area2D" parent="." unique_id=295080773]
+[node name="Hitbox" type="Area2D" parent="." unique_id=187041943]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("4_yw30f")
+metadata/_custom_type_script = "uid://dj2f4pt0e0uf4"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SwordArea2D" unique_id=217150792]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox" unique_id=217150792]

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://xx03p8sx0pgq" path="res://world/grass.gd" id="1_6gvtj"]
 [ext_resource type="Texture2D" uid="uid://co7ok4b1bdihf" path="res://world/grass.png" id="1_44d1o"]
 [ext_resource type="PackedScene" uid="uid://c3tdixh3s3mjb" path="res://effects/grass_effect.tscn" id="2_aervy"]
+[ext_resource type="Script" uid="uid://dr8hs6dqtjn4t" path="res://damage_boxes/hurtbox.gd" id="4_3sb01"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44d1o"]
 size = Vector2(14, 14)
@@ -14,7 +15,11 @@ grass_effect = ExtResource("2_aervy")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1464621178]
 texture = ExtResource("1_44d1o")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1746491756]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1278654991]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("4_3sb01")
+metadata/_custom_type_script = "uid://dr8hs6dqtjn4t"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2029440243]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=2029440243]
 shape = SubResource("RectangleShape2D_44d1o")
