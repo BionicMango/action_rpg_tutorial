@@ -1,10 +1,11 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 @onready var animation_tree: AnimationTree = $AnimationTree;
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/StateMachine/playback");
 
-const speed: float = 100.0;
-const roll_speed: float = 125.0;
+const SPEED: float = 100.0;
+const ROLL_SPEED: float = 125.0;
+
 var input_vector: Vector2 = Vector2.ZERO;
 var last_input_vector: Vector2 = Vector2.ZERO;
 
@@ -35,11 +36,11 @@ func move_state(_delta: float) -> void:
 	if Input.is_action_just_pressed("roll"):
 		playback.travel("RollState");
 
-	velocity = input_vector * speed;
+	velocity = input_vector * SPEED;
 	move_and_slide(); # move (based on velocity vector)
 
 func roll_state(_delta: float) -> void:
-	velocity = last_input_vector.normalized() * roll_speed;
+	velocity = last_input_vector.normalized() * ROLL_SPEED;
 	move_and_slide();
 
 func update_blend_positions(direction_vector: Vector2) -> void:
