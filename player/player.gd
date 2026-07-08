@@ -12,8 +12,9 @@ class_name Player extends CharacterBody2D;
 const SPEED: float = 100.0;
 const ROLL_SPEED: float = 125.0;
 
+# movement input from wasd/direction keys & controller
 var input_vector: Vector2 = Vector2.ZERO;
-var last_input_vector: Vector2 = Vector2.ZERO;
+var last_input_vector: Vector2 = Vector2.DOWN; # save previous direction
 
 func _ready() -> void:
 	stats = stats.duplicate();
