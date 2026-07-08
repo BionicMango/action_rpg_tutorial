@@ -3,7 +3,15 @@
 [ext_resource type="Texture2D" uid="uid://d4dlpl7tvhcs8" path="res://enemies/bat.png" id="1_0fsds"]
 [ext_resource type="Script" uid="uid://c33o6q6bripkp" path="res://enemies/bat_enemy.gd" id="1_5gx0a"]
 [ext_resource type="Texture2D" uid="uid://d2hokhabsmfrp" path="res://shadows/small_shadow.png" id="2_e7gs6"]
+[ext_resource type="Script" uid="uid://ny3eahu4ou0a" path="res://stats.gd" id="2_erta8"]
 [ext_resource type="Script" uid="uid://dr8hs6dqtjn4t" path="res://damage_boxes/hurtbox.gd" id="4_grp10"]
+[ext_resource type="Script" uid="uid://dj2f4pt0e0uf4" path="res://damage_boxes/hitbox.gd" id="6_ww8v4"]
+
+[sub_resource type="Resource" id="Resource_ww8v4"]
+script = ExtResource("2_erta8")
+health = 3.0
+max_health = 3.0
+metadata/_custom_type_script = "uid://ny3eahu4ou0a"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5gx0a"]
 radius = 5.0
@@ -21,6 +29,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:collision_mask")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:collision_layer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
 }
 
 [sub_resource type="Animation" id="Animation_erta8"]
@@ -41,14 +73,59 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4]
 }
 
+[sub_resource type="Animation" id="Animation_ww8v4"]
+resource_name = "hit"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:collision_mask")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:collision_layer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 4]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ww8v4"]
 _data = {
 &"RESET": SubResource("Animation_grp10"),
-&"fly": SubResource("Animation_erta8")
+&"fly": SubResource("Animation_erta8"),
+&"hit": SubResource("Animation_ww8v4")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e7gs6"]
 animation = &"fly"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_grp10"]
+animation = &"hit"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5gx0a"]
 animation = &"fly"
@@ -64,12 +141,18 @@ advance_expression = "can_see_player()"
 advance_mode = 2
 advance_expression = "not can_see_player()"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_boacx"]
+advance_mode = 2
+advance_expression = "velocity == Vector2(0,0)"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_boacx"]
-states/Chase/node = SubResource("AnimationNodeAnimation_e7gs6")
-states/Chase/position = Vector2(460.88892, 213.33334)
-states/Idle/node = SubResource("AnimationNodeAnimation_5gx0a")
-states/Idle/position = Vector2(460.6667, 99.55556)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_grp10"), "Idle", "Chase", SubResource("AnimationNodeStateMachineTransition_erta8"), "Chase", "Idle", SubResource("AnimationNodeStateMachineTransition_ww8v4")]
+states/ChaseState/node = SubResource("AnimationNodeAnimation_e7gs6")
+states/ChaseState/position = Vector2(460.88892, 213.33334)
+states/HitState/node = SubResource("AnimationNodeAnimation_grp10")
+states/HitState/position = Vector2(616, 100)
+states/IdleState/node = SubResource("AnimationNodeAnimation_5gx0a")
+states/IdleState/position = Vector2(460.6667, 99.55556)
+transitions = ["Start", "IdleState", SubResource("AnimationNodeStateMachineTransition_grp10"), "IdleState", "ChaseState", SubResource("AnimationNodeStateMachineTransition_erta8"), "ChaseState", "IdleState", SubResource("AnimationNodeStateMachineTransition_ww8v4"), "HitState", "IdleState", SubResource("AnimationNodeStateMachineTransition_boacx")]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_e7gs6"]
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_boacx")
@@ -79,11 +162,15 @@ node_connections = [&"output", 0, &"StateMachine"]
 [sub_resource type="CircleShape2D" id="CircleShape2D_grp10"]
 radius = 4.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ww8v4"]
+radius = 5.0
+
 [node name="BatEnemy" type="CharacterBody2D" unique_id=712715095]
 collision_layer = 4
-collision_mask = 7
+collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_5gx0a")
+stats = SubResource("Resource_ww8v4")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=793002849]
 position = Vector2(-1, 0)
@@ -119,3 +206,14 @@ metadata/_custom_type_script = "uid://dr8hs6dqtjn4t"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1729244564]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_grp10")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=233768687]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("6_ww8v4")
+metadata/_custom_type_script = "uid://dj2f4pt0e0uf4"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=463261946]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_ww8v4")
+debug_color = Color(0.98279315, 0, 0.363214, 0.41960785)

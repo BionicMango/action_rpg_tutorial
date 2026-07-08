@@ -1,10 +1,15 @@
 extends CharacterBody2D
 
 # how fast bat moves
-const SPEED: float = 30.0; # set in inspector
+const SPEED: float = 30.0;
+const FRICTION: float = 500.0;
 
 # how far can bat enemies see
-@export var sight_range: float = 64.0; # set in inspector
+@export var max_range: float = 64.0; # set in inspector
+@export var min_range: float = 10.0; # set in inspector
+
+# Enemy Stats (resource file)
+@export var stats: Stats;
 
 # accessing child nodes
 @onready var sprite_2d: Sprite2D = $Sprite2D;
@@ -14,16 +19,31 @@ const SPEED: float = 30.0; # set in inspector
 @onready var hurtbox: Hurtbox = $Hurtbox;
 
 func _ready() -> void:
-	hurtbox.hurt.connect(func(_other_hitbox: Hitbox): 
-		queue_free();
-	)
+	# ensure that every enemy has its OWN stats resource (not shared)
+	stats = stats.duplicate();
+	
+	# connecting signals
+	hurtbox.hurt.connect(take_hit.call_deferred); # when hurt
+	stats.no_health.connect(queue_free); # defeated
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	# switching between different states
 	var state = playback.get_current_node();
 	match state:
-		"Idle": pass;
-		"Chase": chase_state();
+		"IdleState": pass;
+		"ChaseState": chase_state();
+		"HitState": hit_state(delta);
+
+func take_hit(other_hitbox: Hitbox) -> void:
+	# lose damage
+	stats.health -= other_hitbox.damage;
+	
+	# knockback effect
+	velocity = other_hitbox.knockback_dir * other_hitbox.knockback_amount;
+	playback.start("HitState");
+	
+	# debugging
+	print("Changed to the hit state");
 
 # access the player node
 func get_player() -> Player:
@@ -37,7 +57,7 @@ func is_player_in_range() -> bool:
 	# check that player has not "died" etc. & return whether distance to player < range
 	if player is Player:
 		var distance_to_player = global_position.distance_to(player.global_position);
-		if distance_to_player <= sight_range:
+		if distance_to_player < max_range and distance_to_player > min_range:
 			result = true;
 	
 	return result;
@@ -50,6 +70,11 @@ func chase_state():
 		sprite_2d.scale.x = sign(velocity.x)
 	else:
 		velocity = Vector2.ZERO;
+	move_and_slide();
+
+# what bat will do if it is hit (i.e. knockback & damage)
+func hit_state(delta: float) -> void:
+	velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta);
 	move_and_slide();
 
 # checks if player is in line of sight (not behind other objects like trees)
