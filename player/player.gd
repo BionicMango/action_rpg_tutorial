@@ -1,14 +1,13 @@
 class_name Player extends CharacterBody2D;
 
-# Child Nodes
+# child Nodes
 @onready var animation_tree: AnimationTree = $AnimationTree;
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/StateMachine/playback");
 @onready var hurtbox: Hurtbox = $Hurtbox;
 @onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer;
 
-# Player stats
+# player stats
 @export var stats: Stats;
-
 const SPEED: float = 100.0;
 const ROLL_SPEED: float = 125.0;
 
@@ -17,8 +16,6 @@ var input_vector: Vector2 = Vector2.ZERO;
 var last_input_vector: Vector2 = Vector2.DOWN; # save previous direction
 
 func _ready() -> void:
-	stats = stats.duplicate();
-	
 	# connecting signals
 	hurtbox.hurt.connect(take_hit.call_deferred); # hurt/damage taken
 	stats.no_health.connect(die)

@@ -3,15 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://cdodl0rgmstib" path="res://player/player.png" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://de4mxopfp5g0t" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://ckatuw2t4bxe4" path="res://shadows/medium_shadow.png" id="2_g1dw6"]
-[ext_resource type="Script" uid="uid://ny3eahu4ou0a" path="res://stats.gd" id="2_qjkh3"]
+[ext_resource type="Resource" uid="uid://dcn0qf71v6q88" path="res://player/player_stats.tres" id="2_g6k8r"]
 [ext_resource type="Script" uid="uid://dj2f4pt0e0uf4" path="res://damage_boxes/hitbox.gd" id="4_yw30f"]
 [ext_resource type="Script" uid="uid://dr8hs6dqtjn4t" path="res://damage_boxes/hurtbox.gd" id="6_g6k8r"]
-
-[sub_resource type="Resource" id="Resource_g6k8r"]
-script = ExtResource("2_qjkh3")
-health = 4.0
-max_health = 4.0
-metadata/_custom_type_script = "uid://ny3eahu4ou0a"
 
 [sub_resource type="Animation" id="Animation_rkbax"]
 length = 0.001
@@ -104,6 +98,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [Vector2(0, 1)]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"clear_hit_targets"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_yllr7"]
 resource_name = "attack_left"
@@ -144,6 +152,20 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [Vector2(-1, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"clear_hit_targets"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_2ieo8"]
@@ -186,6 +208,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [Vector2(1, 0)]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"clear_hit_targets"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_kb6p2"]
 resource_name = "attack_up"
@@ -226,6 +262,20 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [Vector2(0, -1)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"clear_hit_targets"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_e7oew"]
@@ -717,7 +767,7 @@ _data = {
 [node name="Player" type="CharacterBody2D" unique_id=1805509164 groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_rkbax")
-stats = SubResource("Resource_g6k8r")
+stats = ExtResource("2_g6k8r")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1584544639]
 position = Vector2(0, -6)
@@ -757,6 +807,7 @@ collision_layer = 16
 collision_mask = 16
 script = ExtResource("4_yw30f")
 knockback_dir = Vector2(0, 1)
+stores_hit_targets = true
 metadata/_custom_type_script = "uid://dj2f4pt0e0uf4"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox" unique_id=217150792]

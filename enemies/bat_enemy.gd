@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends CharacterBody2D;
 
 # how fast bat moves
 const SPEED: float = 30.0;

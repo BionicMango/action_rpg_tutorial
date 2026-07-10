@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://g625nvacd71v" path="res://world/tree.tscn" id="4_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://dda3i1nlo060a" path="res://world/grass.tscn" id="7_pkg7o"]
 [ext_resource type="PackedScene" uid="uid://cdb0umjoj3e0e" path="res://enemies/bat_enemy.tscn" id="8_gbfbk"]
+[ext_resource type="PackedScene" uid="uid://vevlx85bevlx" path="res://ui/hearts_ui.tscn" id="9_ioo17"]
 
 [node name="World" type="Node2D" unique_id=1159485171]
 y_sort_enabled = true
@@ -215,3 +216,5 @@ position = Vector2(278, 74)
 
 [node name="BatEnemy2" parent="Enemies" unique_id=2018256544 instance=ExtResource("8_gbfbk")]
 position = Vector2(142, 203)
+
+[node name="HeartsUI" parent="." unique_id=1781656854 instance=ExtResource("9_ioo17")]
