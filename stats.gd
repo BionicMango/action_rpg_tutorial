@@ -5,7 +5,7 @@ class_name Stats extends Resource;
 		var previous_health = health;
 		health = value;
 		if previous_health != health: health_changed.emit(health) # not dead
-		if health <= 0: no_health.emit();
+		if health <= 0: no_health.emit(); # dead
 
 @export var max_health: int = 1;
 

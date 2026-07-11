@@ -217,4 +217,6 @@ position = Vector2(278, 74)
 [node name="BatEnemy2" parent="Enemies" unique_id=2018256544 instance=ExtResource("8_gbfbk")]
 position = Vector2(142, 203)
 
-[node name="HeartsUI" parent="." unique_id=1781656854 instance=ExtResource("9_ioo17")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=541437669]
+
+[node name="HeartsUI" parent="CanvasLayer" unique_id=1781656854 instance=ExtResource("9_ioo17")]
