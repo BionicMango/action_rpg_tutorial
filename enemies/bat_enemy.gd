@@ -11,8 +11,9 @@ const FRICTION: float = 500.0;
 # enemy stats (resource file)
 @export var stats: Stats;
 
-# hit effect (when bat is hit)
+# effects
 @export var hit_effect: PackedScene;
+@export var death_effect: PackedScene;
 
 # accessing child nodes
 @onready var sprite_2d: Sprite2D = $Sprite2D;
@@ -28,7 +29,7 @@ func _ready() -> void:
 	
 	# connecting signals
 	hurtbox.hurt.connect(take_hit.call_deferred); # when hurt
-	stats.no_health.connect(queue_free); # defeated
+	stats.no_health.connect(death); # defeated
 
 func _physics_process(delta: float) -> void:
 	# switching between different states
@@ -38,6 +39,7 @@ func _physics_process(delta: float) -> void:
 		"ChaseState": chase_state();
 		"HitState": hit_state(delta);
 
+# what happens when bat is hit by player
 func take_hit(other_hitbox: Hitbox) -> void:
 	# hit effect
 	var hit_effect_instance = hit_effect.instantiate();
@@ -95,3 +97,10 @@ func can_see_player() -> bool:
 	ray_cast_2d.target_position = player.global_position - global_position;
 	var has_los_to_player = not ray_cast_2d.is_colliding(); # los = line of sight
 	return has_los_to_player;
+
+# when health is zero
+func death() -> void:
+	var death_effect_instance = death_effect.instantiate();
+	get_tree().current_scene.add_child(death_effect_instance);
+	death_effect_instance.global_position = bat_center.global_position;
+	queue_free();
