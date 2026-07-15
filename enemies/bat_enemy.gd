@@ -12,8 +12,9 @@ const FRICTION: float = 500.0
 @export var stats: Stats
 
 # effects
-@export var hit_effect: PackedScene
-@export var death_effect: PackedScene
+const FX_HIT = preload("uid://dmqbw5bp25rnd")
+
+const FX_DEATH = preload("uid://crv5q4amfh6dr")
 
 # accessing child nodes
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -29,7 +30,7 @@ func _ready() -> void:
 	
 	# connecting signals
 	hurtbox.hurt.connect(take_hit.call_deferred) # when hurt
-	stats.no_health.connect(death) # defeated
+	stats.no_health.connect(die) # defeated
 
 func _physics_process(delta: float) -> void:
 	# switching between different states
@@ -42,9 +43,12 @@ func _physics_process(delta: float) -> void:
 # what happens when bat is hit by player
 func take_hit(other_hitbox: Hitbox) -> void:
 	# hit effect
-	var hit_effect_instance = hit_effect.instantiate()
+	var hit_effect_instance = FX_HIT.instantiate()
 	get_tree().current_scene.add_child(hit_effect_instance)
 	hit_effect_instance.global_position = bat_center.global_position
+	
+	# hit sound effect
+	
 	
 	# lose damage
 	stats.health -= other_hitbox.damage
@@ -99,8 +103,8 @@ func can_see_player() -> bool:
 	return has_los_to_player
 
 # when health is zero
-func death() -> void:
-	var death_effect_instance = death_effect.instantiate()
+func die() -> void:
+	var death_effect_instance = FX_DEATH.instantiate()
 	get_tree().current_scene.add_child(death_effect_instance)
 	death_effect_instance.global_position = bat_center.global_position
 	queue_free()

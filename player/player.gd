@@ -5,6 +5,10 @@ class_name Player extends CharacterBody2D
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/StateMachine/playback")
 @onready var hurtbox: Hurtbox = $Hurtbox
 @onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
+@onready var audio_stream_player: AudioStreamPlayer = $Node2D/HurtAudioStreamPlayer
+
+# sound effects
+const SFX_HURT = preload("uid://4dscbjavyals")
 
 # player stats
 @export var stats: Stats
@@ -34,6 +38,9 @@ func die() -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED
 	
 func take_hit(other_hitbox: Hitbox) -> void:
+	# hurt sound effect
+	audio_stream_player.play();
+	
 	stats.health -= other_hitbox.damage
 	blink_animation_player.play("blink")
 

@@ -220,3 +220,7 @@ position = Vector2(142, 203)
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=541437669]
 
 [node name="HeartsUI" parent="CanvasLayer" unique_id=1781656854 instance=ExtResource("9_ioo17")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=744456409]
+autoplay = true
+bus = &"Music"
