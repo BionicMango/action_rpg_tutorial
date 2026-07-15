@@ -219,3 +219,6 @@ metadata/_custom_type_script = "uid://dj2f4pt0e0uf4"
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_ww8v4")
 debug_color = Color(0.98279315, 0, 0.363214, 0.41960785)
+
+[node name="Center" type="Marker2D" parent="." unique_id=356666751]
+position = Vector2(0, -7)

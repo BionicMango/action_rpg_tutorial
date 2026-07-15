@@ -20,6 +20,7 @@ const FRICTION: float = 500.0;
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/StateMachine/playback");
 @onready var ray_cast_2d: RayCast2D = $RayCast2D;
 @onready var hurtbox: Hurtbox = $Hurtbox;
+@onready var bat_center: Marker2D = $Center
 
 func _ready() -> void:
 	# ensure that every enemy has its OWN stats resource (not shared)
@@ -41,7 +42,7 @@ func take_hit(other_hitbox: Hitbox) -> void:
 	# hit effect
 	var hit_effect_instance = hit_effect.instantiate();
 	get_tree().current_scene.add_child(hit_effect_instance);
-	hit_effect_instance.global_position = hurtbox.global_position;
+	hit_effect_instance.global_position = bat_center.global_position;
 	
 	# lose damage
 	stats.health -= other_hitbox.damage;
