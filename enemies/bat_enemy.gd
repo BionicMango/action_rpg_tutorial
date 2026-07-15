@@ -8,8 +8,11 @@ const FRICTION: float = 500.0;
 @export var max_range: float = 64.0; # set in inspector
 @export var min_range: float = 10.0; # set in inspector
 
-# Enemy Stats (resource file)
+# enemy stats (resource file)
 @export var stats: Stats;
+
+# hit effect (when bat is hit)
+@export var hit_effect: PackedScene;
 
 # accessing child nodes
 @onready var sprite_2d: Sprite2D = $Sprite2D;
@@ -35,6 +38,11 @@ func _physics_process(delta: float) -> void:
 		"HitState": hit_state(delta);
 
 func take_hit(other_hitbox: Hitbox) -> void:
+	# hit effect
+	var hit_effect_instance = hit_effect.instantiate();
+	get_tree().current_scene.add_child(hit_effect_instance);
+	hit_effect_instance.global_position = hurtbox.global_position;
+	
 	# lose damage
 	stats.health -= other_hitbox.damage;
 	

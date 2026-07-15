@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://c33o6q6bripkp" path="res://enemies/bat_enemy.gd" id="1_5gx0a"]
 [ext_resource type="Texture2D" uid="uid://d2hokhabsmfrp" path="res://shadows/small_shadow.png" id="2_e7gs6"]
 [ext_resource type="Script" uid="uid://ny3eahu4ou0a" path="res://stats.gd" id="2_erta8"]
+[ext_resource type="PackedScene" uid="uid://dmqbw5bp25rnd" path="res://effects/hit_effect.tscn" id="3_boacx"]
 [ext_resource type="Script" uid="uid://dr8hs6dqtjn4t" path="res://damage_boxes/hurtbox.gd" id="4_grp10"]
 [ext_resource type="Script" uid="uid://dj2f4pt0e0uf4" path="res://damage_boxes/hitbox.gd" id="6_ww8v4"]
 
@@ -171,6 +172,7 @@ collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_5gx0a")
 stats = SubResource("Resource_ww8v4")
+hit_effect = ExtResource("3_boacx")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=793002849]
 position = Vector2(-1, 0)
