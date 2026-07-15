@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://clvli2yo6c10s"]
+
+[node name="PauseScreen" type="Control" unique_id=392909570]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=854626006]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0, 0, 0, 0.8)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=394796797]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 180.0
+theme_override_colors/default_color = Color(0.41273317, 0.59045047, 0.41457716, 1)
+theme_override_font_sizes/normal_font_size = 36
+theme_override_font_sizes/bold_font_size = 36
+bbcode_enabled = true
+text = "[b]Paused.[/b]"
+horizontal_alignment = 1
+vertical_alignment = 1

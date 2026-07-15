@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://dda3i1nlo060a" path="res://world/grass.tscn" id="7_pkg7o"]
 [ext_resource type="PackedScene" uid="uid://cdb0umjoj3e0e" path="res://enemies/bat_enemy.tscn" id="8_gbfbk"]
 [ext_resource type="PackedScene" uid="uid://vevlx85bevlx" path="res://ui/hearts_ui.tscn" id="9_ioo17"]
+[ext_resource type="AudioStream" uid="uid://d0lrps6s3eora" path="res://music_and_sounds/music.mp3" id="10_wse8f"]
+[ext_resource type="PackedScene" uid="uid://dr4dnpd1ucn6m" path="res://pauser.tscn" id="11_ic0uy"]
 
 [node name="World" type="Node2D" unique_id=1159485171]
 y_sort_enabled = true
@@ -221,6 +223,10 @@ position = Vector2(142, 203)
 
 [node name="HeartsUI" parent="CanvasLayer" unique_id=1781656854 instance=ExtResource("9_ioo17")]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=744456409]
+[node name="Pauser" parent="CanvasLayer" unique_id=245994181 instance=ExtResource("11_ic0uy")]
+
+[node name="BgAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=744456409]
+stream = ExtResource("10_wse8f")
 autoplay = true
 bus = &"Music"
+parameters/looping = true
