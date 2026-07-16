@@ -138,8 +138,6 @@ advance_mode = 2
 advance_expression = "can_see_player()"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ww8v4"]
-advance_mode = 2
-advance_expression = "not can_see_player()"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_boacx"]
 advance_mode = 2
@@ -155,6 +153,7 @@ states/IdleState/position = Vector2(460.6667, 99.55556)
 transitions = ["Start", "IdleState", SubResource("AnimationNodeStateMachineTransition_grp10"), "IdleState", "ChaseState", SubResource("AnimationNodeStateMachineTransition_erta8"), "ChaseState", "IdleState", SubResource("AnimationNodeStateMachineTransition_ww8v4"), "HitState", "IdleState", SubResource("AnimationNodeStateMachineTransition_boacx")]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_e7gs6"]
+graph_offset = Vector2(-655.8029, -57.806988)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_boacx")
 nodes/StateMachine/position = Vector2(53.333332, 93.333336)
 node_connections = [&"output", 0, &"StateMachine"]
@@ -171,6 +170,13 @@ collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_5gx0a")
 stats = SubResource("Resource_ww8v4")
+
+[node name="NavigationMarker" type="Marker2D" parent="." unique_id=863742340]
+position = Vector2(0, -3)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="NavigationMarker" unique_id=1541072784]
+path_desired_distance = 4.0
+target_desired_distance = 4.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=793002849]
 position = Vector2(-1, 0)

@@ -7,13 +7,10 @@ class_name Player extends CharacterBody2D
 @onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
 @onready var audio_stream_player: AudioStreamPlayer = $Node2D/HurtAudioStreamPlayer
 
-# sound effects
-const SFX_HURT = preload("uid://4dscbjavyals")
-
 # player stats
 @export var stats: Stats
-const SPEED: float = 100.0
-const ROLL_SPEED: float = 125.0
+@export var speed: float = 100.0
+@export var roll_speed: float = 125.0
 
 # movement input from wasd/direction keys & controller
 var input_vector: Vector2 = Vector2.ZERO
@@ -26,13 +23,15 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var state = playback.get_current_node()
-	
 	match state:
 		"MoveState": move_state(delta)
 		"AttackState": pass
 		"RollState": roll_state(delta)
 
 func die() -> void:
+	"""Game over. First player is hidden.
+	Then removed from group "player" so it is no longer recognized.
+	Then process is disabled so it no longer updates (i.e. paused)."""
 	hide()
 	remove_from_group("player")
 	process_mode = Node.PROCESS_MODE_DISABLED
@@ -63,11 +62,11 @@ func move_state(_delta: float) -> void:
 	if Input.is_action_just_pressed("roll"):
 		playback.travel("RollState")
 
-	velocity = input_vector * SPEED
+	velocity = input_vector * speed
 	move_and_slide() # move (based on velocity vector)
 
 func roll_state(_delta: float) -> void:
-	velocity = last_input_vector.normalized() * ROLL_SPEED
+	velocity = last_input_vector.normalized() * roll_speed
 	move_and_slide()
 
 func update_blend_positions(direction_vector: Vector2) -> void:
